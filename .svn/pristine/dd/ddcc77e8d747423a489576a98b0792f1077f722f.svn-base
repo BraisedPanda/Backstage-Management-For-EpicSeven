@@ -1,0 +1,66 @@
+package ssm.controller;
+
+import java.util.List;
+
+
+
+import org.apache.ibatis.annotations.ResultMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import ssm.po.User;
+import ssm.service.UserService;
+
+@Controller
+public class UserController {
+	@Autowired
+	private UserService userService;
+	
+	//查找所有用户
+	@RequestMapping("/findAllUser")
+	public ModelAndView findAllUser() throws Exception{
+		
+		List<User> userList = userService.findAllUser();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("userList",userList);
+		modelAndView.setViewName("message");
+		return modelAndView;
+	}
+	
+	//根据用户的uid查找用户
+	@RequestMapping("/findUserByUid")
+	public ModelAndView findUserByUid(String uid) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		User user = userService.findUserByUid(uid);
+		
+		modelAndView.addObject("user",user);
+		modelAndView.setViewName("user/detail");
+		return modelAndView;
+	}
+	
+	//修改用户个人信息
+	@RequestMapping("/updateUser")
+	public ModelAndView updateUser(String uid,User user) throws Exception{
+	
+		ModelAndView modelAndView = new ModelAndView();
+		System.out.println(user);
+		userService.updateUser(uid, user);
+		List<User> userList = userService.findAllUser();
+		modelAndView.addObject("userList",userList);
+		modelAndView.setViewName("message");
+		
+		return modelAndView;
+	}
+	//注册用户
+	@RequestMapping("/regist")
+	public String regist(User user, Model model) throws Exception{
+		
+		userService.regist(user);
+		model.addAttribute("msg", "恭喜你注册成功！~");
+		return "info";
+	}
+}

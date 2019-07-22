@@ -1,0 +1,115 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'allcategory.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	.category{
+		width:200px;
+		height:100px;
+		border:1px solid white;
+		border-radius:20px;
+		float:left;
+		margin:20px 20px;
+		text-align:center;
+		background:#6F91B5;
+		color:white;
+		transition:0.7s;
+	}
+	ul{
+	list-style:none;
+	margin-top:20px;
+	text-align:center;
+	}
+	ul>li{
+	float:left;
+	
+	}
+	
+	.name{
+	width:180px;
+	font-size:30px;
+	
+	font-family:幼圆;
+	}
+	.edit{
+	color:#eef7f2;
+	border-radius:10px;
+	width:50px;
+	margin-left:30px;
+	margin-top:15px;
+	}
+	a{
+	text-decoration:none;
+	color:white;
+	}
+	.category:hover{
+		background:#89c0b7;
+		color:#eef7f2;
+	}
+	.edit:hover{
+		background:#B7E1E4;
+	}
+	.top{
+	font-size:20px;
+	border-bottom:1px solid gray;
+	width:1200px;
+	margin-top:10px;
+	height:30px;
+	}
+	p{
+	margin-left:20px;
+	text-align:center;
+	background:#f25a47;
+	color:white;
+	border-radius:10px;
+	width:150px;
+	}
+</style>
+<script>
+	function confirm1(){
+		var result = confirm("是否确认删除");
+		if(result == true){
+			
+		}else{
+			window.event.returnValue = false;
+		}
+	}
+</script>
+  </head>
+  
+  <body>
+  	<div class="top">
+  		<p>所有分类</p>
+  	</div>
+    	<c:forEach items="${categoryList }" var="list">
+    		<div class="category">
+    		<ul><li class="name">${list.cname }</li>
+    		<li class="edit"><a href="editCategory.action?cid=${list.cid }">编辑</a></li>
+    		<li class="edit"><a href="deleteCategory.action?cid=${list.cid }" onClick="confirm1();">删除</a></li>
+    		</ul>
+    		</div>
+    	</c:forEach>
+  </body>
+</html>

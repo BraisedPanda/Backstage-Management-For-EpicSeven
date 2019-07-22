@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.OrderitemMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Orderitem" >
+    <id column="oiid" property="oiid" jdbcType="VARCHAR" />
+    <result column="subtotal" property="subtotal" jdbcType="DOUBLE" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="gid" property="gid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    oiid, subtotal, count, oid, gid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ssm.po.OrderitemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_orderitem
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_orderitem
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="ssm.po.OrderitemExample" >
+    delete from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Orderitem" >
+    insert into t_orderitem (oiid, subtotal, count, 
+      oid, gid)
+    values (#{oiid,jdbcType=VARCHAR}, #{subtotal,jdbcType=DOUBLE}, #{count,jdbcType=INTEGER}, 
+      #{oid,jdbcType=VARCHAR}, #{gid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Orderitem" >
+    insert into t_orderitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oiid != null" >
+        oiid,
+      </if>
+      <if test="subtotal != null" >
+        subtotal,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oiid != null" >
+        #{oiid,jdbcType=VARCHAR},
+      </if>
+      <if test="subtotal != null" >
+        #{subtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ssm.po.OrderitemExample" resultType="java.lang.Integer" >
+    select count(*) from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_orderitem
+    <set >
+      <if test="record.oiid != null" >
+        oiid = #{record.oiid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtotal != null" >
+        subtotal = #{record.subtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.oid != null" >
+        oid = #{record.oid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gid != null" >
+        gid = #{record.gid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_orderitem
+    set oiid = #{record.oiid,jdbcType=VARCHAR},
+      subtotal = #{record.subtotal,jdbcType=DOUBLE},
+      count = #{record.count,jdbcType=INTEGER},
+      oid = #{record.oid,jdbcType=VARCHAR},
+      gid = #{record.gid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Orderitem" >
+    update t_orderitem
+    <set >
+      <if test="subtotal != null" >
+        subtotal = #{subtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Orderitem" >
+    update t_orderitem
+    set subtotal = #{subtotal,jdbcType=DOUBLE},
+      count = #{count,jdbcType=INTEGER},
+      oid = #{oid,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=VARCHAR}
+    where oiid = #{oiid,jdbcType=VARCHAR}
+  </update>
+</mapper>

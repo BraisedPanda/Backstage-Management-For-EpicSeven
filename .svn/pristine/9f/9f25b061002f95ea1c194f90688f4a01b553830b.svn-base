@@ -1,0 +1,20 @@
+package demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import demo.mapper.CategoryMapper;
+import demo.po.Category;
+import demo.service.CategoryService;
+
+public class CategoryServiceImpl implements CategoryService{
+	@Autowired
+	private CategoryMapper categoryMapper;
+	public Category findCategoryByCid(String cid) {
+		
+		Category category = categoryMapper.selectByPrimaryKey(cid);
+		
+		return category;
+	}
+	
+	
+}

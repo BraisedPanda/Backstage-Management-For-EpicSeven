@@ -1,0 +1,18 @@
+package demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import demo.mapper.GoodsMapper;
+import demo.po.Goods;
+import demo.service.GoodsService;
+
+public class GoodsServiceImpl implements GoodsService {
+	@Autowired
+	private GoodsMapper goodsMapper;
+	public Goods findBookByBid(String gid) {
+		Goods goods = goodsMapper.selectByPrimaryKey(gid);
+		
+		return goods;
+	}
+
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>更新日志.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    2019-6-3 23:01:20
+    		今天下午开始着手后台项目的开发，后台主要是管理界面，所以对前端没什么要求，主要是功能的实现
+    			完成了环境的搭建
+    			完成了主框架的搭建
+    			完成了左侧菜单效果的实现（jquery卡了我好久QAQ,原先的菜单，点击父元素点击子元素，都会触发slideToggle的效果，
+    				现在已经优化完成）
+    2019-6-4 23:22:59
+    		今天下午出去和学姐学长一起吃饭了，所以下午没有时间写
+    		完成了所有用户查询
+    		完成了模糊查询用户
+    		完成了修改用户的一部分功能（目前只完成了回显，就是根据用户uid查找用户）
+  </body>
+</html>

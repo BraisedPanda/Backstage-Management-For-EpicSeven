@@ -1,0 +1,83 @@
+package ssm.po;
+
+public class Goods {
+    private String gid;
+
+    private String gname;
+
+    private Double price;
+
+    private String introduction;
+
+    private String detail;
+
+    private String cid;
+
+    private String image;
+
+    private String ccid;
+
+    public String getGid() {
+        return gid;
+    }
+
+    public void setGid(String gid) {
+        this.gid = gid == null ? null : gid.trim();
+    }
+
+    public String getGname() {
+        return gname;
+    }
+
+    public void setGname(String gname) {
+        this.gname = gname == null ? null : gname.trim();
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail == null ? null : detail.trim();
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid == null ? null : cid.trim();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
+    }
+
+    public String getCcid() {
+        return ccid;
+    }
+
+    public void setCcid(String ccid) {
+        this.ccid = ccid == null ? null : ccid.trim();
+    }
+}

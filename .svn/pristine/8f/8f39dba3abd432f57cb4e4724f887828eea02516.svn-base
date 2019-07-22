@@ -1,0 +1,43 @@
+package ssm.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ssm.mapper.UserMapper;
+import ssm.po.User;
+import ssm.po.UserExample;
+import ssm.service.UserService;
+
+public class UserServiceImpl implements UserService {
+	@Autowired
+	private UserMapper userMapper;
+	
+	//查找所有用户
+	public List<User> findAllUser() throws Exception {
+		
+		return userMapper.findAllUser();
+	}
+	
+	//根据uid查找用户
+	public User findUserByUid(String uid) throws Exception {
+		
+		return userMapper.selectByPrimaryKey(uid);
+	}
+	
+	//修改用户信息
+	public void updateUser(String uid, User user) throws Exception {
+		user.setUid(uid);
+		userMapper.updateByPrimaryKeySelective(user);
+		
+	}
+	//注册用户
+
+	public void regist(User user) throws Exception {
+		userMapper.insert(user);
+		
+	}
+	
+
+	
+}

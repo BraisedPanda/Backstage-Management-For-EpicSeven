@@ -1,0 +1,22 @@
+package demo.controller;
+
+import org.apache.ibatis.annotations.ResultMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import demo.service.GoodsService;
+
+@Controller
+public class GoodsController {
+	
+	@Autowired
+	private GoodsService goodsService;
+	
+	@RequestMapping("/findGoodsByGid")
+	public void findGoodsByGid(){
+		
+		
+	}
+}
